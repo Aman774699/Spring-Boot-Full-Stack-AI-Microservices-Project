@@ -22,5 +22,11 @@ public class UserService {
         return userRepository.save(user).map(savedUser -> modelMapper.map(savedUser, RegisterRequest.class));
     }
 
+    public Mono<Boolean> isEmailExist(String email)
+    {
+       return userRepository.existsByEmail(email);
+    }
+
+
 
 }
