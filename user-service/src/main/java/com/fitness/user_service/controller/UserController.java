@@ -21,10 +21,19 @@ public class UserController {
     }
 
     @PostMapping("/registerUser")
-    Mono<ResponseEntity<RegisterRequest>> registerUser(@RequestBody RegisterRequest registerRequest) {
-        return userService.regisration(registerRequest)
-                .map(response -> ResponseEntity.ok(response))
-                .defaultIfEmpty(ResponseEntity.badRequest().build());
+    Mono<ResponseEntity<String>> registerUser(@RequestBody RegisterRequest registerRequest) {
+        return userService.isEmailExist(registerRequest.getEmail())
+                .flatMap(exists -> {
+                    if (exists) {
+                        return Mono.just(ResponseEntity
+                                .badRequest()
+                                .body("Email is already register"));
+                    } else {
+                        return userService.regisration(registerRequest)
+                                .map(savedUser -> ResponseEntity.ok("User Saved Successfully"))
+                                .defaultIfEmpty(ResponseEntity.status(500).body("There was an error in registering the user"));
+                    }
+                });
     }
 
 
