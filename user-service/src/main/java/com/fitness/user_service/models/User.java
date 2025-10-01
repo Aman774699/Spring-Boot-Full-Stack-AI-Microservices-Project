@@ -5,12 +5,13 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Table(name = "users")
 @Data
 public class User {
     @Id
-    private String id;
+    private UUID id;
     private String email;
     private String password;
     private String firstName;
