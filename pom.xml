@@ -12,8 +12,8 @@
     <modules>
         <!-- Add one <module> entry for each service folder -->
         <module>user-service</module>
-<!--        <module>order-service</module>-->
-<!--        <module>gateway</module>-->
+        <module>activity-service</module>
+        <module>eureka-server</module>
         <!-- add others as needed -->
     </modules>
 

@@ -2,11 +2,6 @@ spring:
   application:
     name: user-service
 
-#  datasource:
-#    url: jdbc:postgresql://localhost:5432/fitness-micro-user
-#    username: postgres
-#    password: root
-#    driver-class-name: org.postgresql.Driver
   r2dbc:
     url: r2dbc:postgresql://localhost:5432/fitness-micro-user
     username: postgres
@@ -16,3 +11,16 @@ spring:
     hibernate:
       ddl-auto: update
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+  cloud:
+    compatibility-verifier:
+      enabled: false
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
