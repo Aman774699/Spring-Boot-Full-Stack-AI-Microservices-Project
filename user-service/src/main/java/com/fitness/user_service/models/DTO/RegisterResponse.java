@@ -5,10 +5,11 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Data
 public class RegisterResponse {
-    private String id;
+    private UUID id;
     @Email
     @NotBlank
     private String email;

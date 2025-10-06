@@ -1,13 +1,13 @@
 package com.fitness.user_service.controller;
 
 import com.fitness.user_service.models.DTO.RegisterRequest;
+import com.fitness.user_service.models.DTO.RegisterResponse;
 import com.fitness.user_service.service.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
+
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/api/user")
@@ -34,6 +34,12 @@ public class UserController {
                                 .defaultIfEmpty(ResponseEntity.status(500).body("There was an error in registering the user"));
                     }
                 });
+    }
+
+    @GetMapping("/getUser/{id}")
+    Mono<ResponseEntity<RegisterResponse>> getUser(@PathVariable("id") UUID id)
+    {
+        return userService.getUser(id).map(ResponseEntity::ok).switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
     }
 
 
