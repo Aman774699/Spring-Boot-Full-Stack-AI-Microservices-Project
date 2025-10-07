@@ -33,5 +33,8 @@ public class UserService {
         return userRepository.findById(id).map(registerUser -> modelMapper.map(registerUser, RegisterResponse.class)).switchIfEmpty(Mono.error(new RuntimeException("User not found")));
     }
 
+    public Mono<Boolean> isUserValidate(UUID id) {
+        return userRepository.existsById(id);
+    }
 
 }

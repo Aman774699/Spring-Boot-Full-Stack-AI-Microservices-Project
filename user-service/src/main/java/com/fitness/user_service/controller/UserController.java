@@ -37,9 +37,15 @@ public class UserController {
     }
 
     @GetMapping("/getUser/{id}")
-    Mono<ResponseEntity<RegisterResponse>> getUser(@PathVariable("id") UUID id)
+    Mono<ResponseEntity<RegisterResponse>> getUser(@PathVariable UUID id)
     {
         return userService.getUser(id).map(ResponseEntity::ok).switchIfEmpty(Mono.just(ResponseEntity.notFound().build()));
+    }
+
+    @GetMapping("/isUserExist/{id}")
+    Mono<Boolean>isUserValidate(@PathVariable("id") UUID id)
+    {
+        return userService.isUserValidate(id);
     }
 
 
