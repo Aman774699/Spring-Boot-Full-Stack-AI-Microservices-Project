@@ -14,6 +14,7 @@
         <module>user-service</module>
         <module>activity-service</module>
         <module>eureka-server</module>
+        <module>ai-service</module>
         <!-- add others as needed -->
     </modules>
 
