@@ -36,8 +36,17 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-config</artifactId>
         </dependency>
         <!-- https://mvnrepository.com/artifact/org.springframework/spring-webflux -->
         <dependency>
@@ -103,6 +112,18 @@
                             <artifactId>lombok</artifactId>
                         </exclude>
                     </excludes>
+                    <!-- Allow reflection into java.time for Spring Data mapping during runs -->
+                    <jvmArguments>--add-opens java.base/java.time=ALL-UNNAMED</jvmArguments>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.4</version>
+                <configuration>
+                    <!-- Allow tests to use reflection on java.time (fixes InaccessibleObjectException)
+                         Note: this adds a JVM argument for the forked test JVM. -->
+                    <argLine>--add-opens java.base/java.time=ALL-UNNAMED</argLine>
                 </configuration>
             </plugin>
         </plugins>
