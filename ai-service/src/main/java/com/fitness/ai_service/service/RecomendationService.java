@@ -5,15 +5,15 @@ import com.fitness.ai_service.repository.RecomendationRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class RecomendationService {
     private final RecomendationRepo recomendationRepo;
 
-    public Optional<Recommendation> getUserRecommendation(String userId){
-        return recomendationRepo.findById(userId);
+    public List<Recommendation> getUserRecommendation(String userId){
+        return recomendationRepo.findByUserId(userId);
     }
 
     public Recommendation getActivityRecommendation(String activityId) {

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Optional;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -18,7 +18,7 @@ public class RecommendationController {
     private final RecomendationService recommendationService;
 
     @GetMapping("/user/{userId}")
-    public ResponseEntity<Optional<Recommendation>> getUserRecommendation(@PathVariable String userId) {
+    public ResponseEntity<List<Recommendation>> getUserRecommendation(@PathVariable String userId) {
         return ResponseEntity.ok(recommendationService.getUserRecommendation(userId));
     }
 
