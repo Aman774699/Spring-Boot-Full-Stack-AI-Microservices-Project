@@ -34,7 +34,7 @@ public class UserService {
     }
 
     public Mono<Boolean> isUserValidate(UUID id) {
-        return userRepository.existsById(id);
+        return userRepository.existsByKeycloakId(id);
     }
 
 }
