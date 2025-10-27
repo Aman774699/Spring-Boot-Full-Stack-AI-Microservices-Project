@@ -1,6 +1,5 @@
-package com.fitness.user_service.models.DTO;
+package com.fitness.gateway_service.user;
 
-import com.fitness.user_service.models.UserRole;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
@@ -19,7 +18,6 @@ public class RegisterResponse {
     private UUID keycloakId;
     private String firstName;
     private String lastName;
-    private UserRole role = UserRole.USER;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 }
